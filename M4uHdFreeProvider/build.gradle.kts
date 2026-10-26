@@ -1,7 +1,4 @@
-plugins {
-    id("com.lagradost.cloudstream3.gradle")
-}
-
+// Use an integer for version numbers
 version = 1
 
 cloudstream {
