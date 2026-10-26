@@ -49,6 +49,13 @@ class M4uHdFreeProvider : MainAPI() {
     }
 
     override suspend fun loadLinks(data: String, isCasting: Boolean, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit): Boolean {
+        // Yahan par movie page se video link extract karke callback mein dena hota hai
+        val document = app.get(data).document
+        
+        // Misal ke taur par agar koi iframe ya video source ho:
+        val videoUrl = document.selectFirst("iframe")?.attr("src") ?: data
+
+        loadExtractor(videoUrl, data, subtitleCallback, callback)
         return true
     }
 }
