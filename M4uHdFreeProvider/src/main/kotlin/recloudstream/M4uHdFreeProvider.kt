@@ -18,8 +18,6 @@ class M4uHdFreeProvider : MainAPI() {
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         val document = app.get(request.data).document
-        
-        // Sab possible grid item selectors ko aik sath mila kar target kiya hai
         val home = document.select("div.item, div.fl-item, div.film-item, div.col-lg-2, div.col-md-3, .item").mapNotNull { element ->
             val title = element.selectFirst("a.title, .name, h3 a, .film-name a, a")?.text() ?: return@mapNotNull null
             val href = element.selectFirst("a.title, .name, h3 a, .film-name a, a")?.attr("href") ?: return@mapNotNull null
@@ -39,7 +37,7 @@ class M4uHdFreeProvider : MainAPI() {
                     this.posterUrl = poster
                 }
             }
-        }.distinctBy { it.url } // Duplicate items remove karne ke liye
+        }.distinctBy { it.url }
 
         return newHomePageResponse(listOf(HomePageList(request.name, home)))
     }
