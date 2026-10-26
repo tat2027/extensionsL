@@ -18,13 +18,17 @@ class M4uHdFreeProvider : MainAPI() {
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         val document = app.get(request.data).document
-        val home = document.select("div.item, div.film_list-wrap div.fl-item, .item-ael").mapNotNull { element ->
-            val title = element.selectFirst("a.title, .name, h3 a")?.text() ?: return@mapNotNull null
-            val href = element.selectFirst("a.title, .name, h3 a")?.attr("href") ?: return@mapNotNull null
+        
+        // Sab possible grid item selectors ko aik sath mila kar target kiya hai
+        val home = document.select("div.item, div.fl-item, div.film-item, div.col-lg-2, div.col-md-3, .item").mapNotNull { element ->
+            val title = element.selectFirst("a.title, .name, h3 a, .film-name a, a")?.text() ?: return@mapNotNull null
+            val href = element.selectFirst("a.title, .name, h3 a, .film-name a, a")?.attr("href") ?: return@mapNotNull null
             val poster = element.selectFirst("img")?.attr("data-src") ?: element.selectFirst("img")?.attr("src")
             
+            if (title.isBlank() || href.isBlank()) return@mapNotNull null
+
             val fixedHref = if (href.startsWith("http")) href else mainUrl + href
-            val isTv = title.contains("Season") || element.text().contains("TV")
+            val isTv = title.contains("Season", ignoreCase = true) || element.text().contains("TV", ignoreCase = true)
 
             if (isTv) {
                 newTvSeriesSearchResponse(title, fixedHref, TvType.TvSeries) {
@@ -35,33 +39,35 @@ class M4uHdFreeProvider : MainAPI() {
                     this.posterUrl = poster
                 }
             }
-        }
+        }.distinctBy { it.url } // Duplicate items remove karne ke liye
+
         return newHomePageResponse(listOf(HomePageList(request.name, home)))
     }
 
     override suspend fun search(query: String): List<SearchResponse> {
         val url = "$mainUrl/search/$query.html"
         val document = app.get(url).document
-        return document.select("div.item, div.fl-item").mapNotNull { element ->
-            val title = element.selectFirst("a.title, .name, h3 a")?.text() ?: return@mapNotNull null
-            val href = element.selectFirst("a.title, .name, h3 a")?.attr("href") ?: return@mapNotNull null
+        return document.select("div.item, div.fl-item, div.film-item, .item").mapNotNull { element ->
+            val title = element.selectFirst("a.title, .name, h3 a, .film-name a, a")?.text() ?: return@mapNotNull null
+            val href = element.selectFirst("a.title, .name, h3 a, .film-name a, a")?.attr("href") ?: return@mapNotNull null
             val poster = element.selectFirst("img")?.attr("data-src") ?: element.selectFirst("img")?.attr("src")
             
+            if (title.isBlank() || href.isBlank()) return@mapNotNull null
             val fixedHref = if (href.startsWith("http")) href else mainUrl + href
 
             newMovieSearchResponse(title, fixedHref, TvType.Movie) {
                 this.posterUrl = poster
             }
-        }
+        }.distinctBy { it.url }
     }
 
     override suspend fun load(url: String): LoadResponse {
         val document = app.get(url).document
-        val title = document.selectFirst("h1, .movie-title")?.text().toString()
+        val title = document.selectFirst("h1, .movie-title, .title")?.text().toString()
         val poster = document.selectFirst(".film-poster img, .mvi-cover img, img.img-responsive")?.attr("src")
-        val description = document.selectFirst(".description, .film-description, .details")?.text()
+        val description = document.selectFirst(".description, .film-description, .details, .content")?.text()
         
-        val episodes = document.select("div.les-content a, ul.episodes-list li a").mapNotNull { ep ->
+        val episodes = document.select("div.les-content a, ul.episodes-list li a, .list-eps a").mapNotNull { ep ->
             val epName = ep.text()
             val epHref = ep.attr("href")
             val fixedEpHref = if (epHref.startsWith("http")) epHref else mainUrl + epHref
