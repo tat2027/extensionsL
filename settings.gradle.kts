@@ -1,3 +1,21 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven("https://jitpack.io") // <-- Yeh line lazmi hai
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io") // <-- Yeh line bhi lazmi hai
+    }
+}
+
 rootProject.name = "CloudstreamPlugins"
 
 // This file sets what projects are included.
