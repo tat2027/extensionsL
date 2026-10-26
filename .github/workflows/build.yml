@@ -54,11 +54,11 @@ jobs:
           cp **/build/*.jar $GITHUB_WORKSPACE/builds
           cp build/plugins.json $GITHUB_WORKSPACE/builds
 
-      - name: Push builds
-        run: |
+       - name: Push builds
+         run: |
           cd $GITHUB_WORKSPACE/builds
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add .
-          git commit --amend -m "Build $GITHUB_SHA" || exit 0   # do not error if nothing to commit
-          git push --force
+          git commit -m "Build $GITHUB_SHA" || exit 0   # do not error if nothing to commit
+          git push origin HEAD:builds --force
