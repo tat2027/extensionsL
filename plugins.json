@@ -1,5 +1,27 @@
 [
     {
+        "jarFileSize": 29035,
+        "fileHash": "sha256-77a429a09836dae8321e32e3c3303c62bcb4334bff76817b41c7354dd7ef7b03",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/tat2027/extensionsL",
+        "fileSize": 8613,
+        "status": 1,
+        "authors": [
+            "KaifTaufiq"
+        ],
+        "tvTypes": [
+            "Movie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "M4uHdFreeProvider",
+        "jarUrl": "https://raw.githubusercontent.com/tat2027/extensionsL/builds/M4uHdFreeProvider.jar",
+        "description": "Watch M4uHd Free movies and shows in Cloudstream",
+        "url": "https://raw.githubusercontent.com/tat2027/extensionsL/builds/M4uHdFreeProvider.cs3",
+        "name": "M4uHdFreeProvider",
+        "jarHash": "sha256-9c19f835c635d8ffd8d6147f775f7c7dc1650fbac12851b89d8755ffb84cd5e7"
+    },
+    {
         "iconUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/3840px-YouTube_full-color_icon_%282017%29.svg.png",
         "jarFileSize": 46472,
         "fileHash": "sha256-022f1a17ef93fb47cec55f9983006ea4f5c794cef009d7991d50d9f46c5440ad",
