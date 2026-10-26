@@ -11,8 +11,3 @@ cloudstream {
     tvTypes = listOf("Movie", "TvSeries")
     isCrossPlatform = true
 }
-
-dependencies {
-    // Cloudstream core dependency agar automatic fetch na ho
-    implementation(libs.cloudstream3) // ya agar version catalog use nahi ho raha toh standard dependency
-}
