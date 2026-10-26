@@ -8,7 +8,7 @@ class M4uHdFreeProvider : MainAPI() {
     override var name = "M4uHDFree"
     override var supportedTypes = setOf(TvType.Movie, TvType.TvSeries)
     override var lang = "en"
-    override val hasMainPage = true
+    override var hasMainPage = true
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
         val document = app.get(mainUrl).document
@@ -49,7 +49,6 @@ class M4uHdFreeProvider : MainAPI() {
     }
 
     override suspend fun loadLinks(data: String, isCasting: Boolean, subtitleCallback: (SubtitleFile) -> Unit, callback: (ExtractorLink) -> Unit): Boolean {
-        // Yahan video links extract karne ka code aayega
         return true
     }
 }
