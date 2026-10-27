@@ -3,6 +3,6 @@
     "description": "All",
     "manifestVersion": 1,
     "pluginLists": [
-      "https://raw.githubusercontent.com/tat2027/extensionsL/refs/heads/master/plugins.json"
+      "https://raw.githubusercontent.com/tat2027/extensionsL/refs/heads/builds/plugins.json"
     ]
 }
