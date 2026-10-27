@@ -1,25 +1,22 @@
 pluginManagement {
     repositories {
+        maven("https://jitpack.io")
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven("https://jitpack.io")
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
+        maven("https://jitpack.io")
         google()
         mavenCentral()
-        maven("https://jitpack.io")
     }
 }
 
 rootProject.name = "CloudstreamPlugins"
-
-// This file sets what projects are included.
-// All new projects should get automatically included unless specified in the "disabled" variable.
 
 val disabled = listOf<String>()
 
