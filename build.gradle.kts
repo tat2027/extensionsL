@@ -12,8 +12,8 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
-        // Using master-SNAPSHOT with JitPack listed first in repositories
-        classpath("com.github.recloudstream:gradle:master-SNAPSHOT")
+        // Using a stable reference or you can use a specific commit hash from https://github.com/recloudstream/gradle
+        classpath("com.github.recloudstream:gradle:master-SNAPSHOT") // Agar phir bhi masla kare toh yahan commit hash diya ja sakta hai
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.0")
     }
 }
