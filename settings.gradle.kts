@@ -12,7 +12,8 @@ rootProject.name = "CloudstreamPlugins"
 val disabled = listOf<String>()
 
 File(rootDir, ".").eachDir { dir ->
-    if (!disabled.contains(dir.name) && File(dir, "build.gradle.kts").exists()) {
+    // Check for build.gradle or build.gradle.kts
+    if (!disabled.contains(dir.name) && (File(dir, "build.gradle.kts").exists() || File(dir, "build.gradle").exists())) {
         include(dir.name)
     }
 }
