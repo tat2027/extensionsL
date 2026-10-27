@@ -1,7 +1,3 @@
-plugins {
-    id("com.github.recloudstream.gradle")
-}
-
 version = 1
 
 cloudstream {
