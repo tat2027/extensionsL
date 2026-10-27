@@ -1,5 +1,5 @@
 plugins {
-    id("com.github.recloudstream.gradle")
+    id("com.github.recloudstream.gradle") version "master-SNAPSHOT"
 }
 
 // Use an integer for version numbers
