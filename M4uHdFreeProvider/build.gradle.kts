@@ -1,7 +1,7 @@
 version = 1
 
 cloudstream {
-    description = "Watch M4uHd Free movies and shows in Cloudstream"
+    description = "Provider description here"
     authors = listOf("KaifTaufiq")
     status = 1
     tvTypes = listOf("Movie", "TvSeries")
