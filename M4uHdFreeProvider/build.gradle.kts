@@ -1,6 +1,4 @@
-plugins {
-    id("com.github.recloudstream.gradle")
-}
+apply(plugin = "com.github.recloudstream.gradle")
 
 version = 1
 
