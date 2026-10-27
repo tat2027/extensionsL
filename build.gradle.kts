@@ -3,20 +3,7 @@ import com.lagradost.cloudstream3.gradle.CloudstreamExtension
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
-buildscript {
-    repositories {
-        maven("https://jitpack.io")
-        google()
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.7.3")
-        // Using explicit commit hash instead of master-SNAPSHOT to bypass JitPack caching errors
-        classpath("com.github.recloudstream:gradle:32895aedb6")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.4.0")
-    }
-}
+// Yahan se buildscript block hata diya gaya hai taaki Jitpack classpath ka error kabhi na aaye
 
 allprojects {
     repositories {
