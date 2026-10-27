@@ -1,3 +1,15 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven("https://jitpack.io")
+    }
+    plugins {
+        id("com.github.recloudstream.gradle") version "master-SNAPSHOT"
+    }
+}
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
@@ -12,8 +24,7 @@ rootProject.name = "CloudstreamPlugins"
 val disabled = listOf<String>()
 
 File(rootDir, ".").eachDir { dir ->
-    // Check for build.gradle or build.gradle.kts
-    if (!disabled.contains(dir.name) && (File(dir, "build.gradle.kts").exists() || File(dir, "build.gradle").exists())) {
+    if (!disabled.contains(dir.name) && File(dir, "build.gradle.kts").exists()) {
         include(dir.name)
     }
 }
