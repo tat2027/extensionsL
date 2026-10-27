@@ -5,9 +5,6 @@ pluginManagement {
         gradlePluginPortal()
         maven("https://jitpack.io")
     }
-    plugins {
-        id("com.github.recloudstream.gradle") version "master-SNAPSHOT"
-    }
 }
 
 dependencyResolutionManagement {
