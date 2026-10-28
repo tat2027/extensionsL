@@ -30,6 +30,5 @@ kotlin {
 }
 
 dependencies {
-    // Official CloudStream dependency reference for master-SNAPSHOT extensions
-    implementation("com.github.recloudstream:cloudstream3:master-SNAPSHOT")
+    // Left empty intentionally so the CloudStream plugin manages core dependencies automatically
 }
