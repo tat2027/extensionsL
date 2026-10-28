@@ -30,5 +30,6 @@ kotlin {
 }
 
 dependencies {
-    // CloudStream dependencies are automatically managed by the plugin
+    // Required CloudStream core library dependency for provider and plugin classes
+    implementation(com.lagradost.cloudstream3.gradle.CloudstreamPlugin.libVersion)
 }
