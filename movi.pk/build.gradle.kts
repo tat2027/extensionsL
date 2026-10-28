@@ -5,7 +5,6 @@ plugins {
 }
 
 cloudstream {
-    // Modern CloudStream properties schema
     authors = listOf("Redowan")
     description = "MoviPK movies and series provider for CloudStream"
     tvTypes = listOf("Movie", "TvSeries")
@@ -19,6 +18,15 @@ android {
     defaultConfig {
         minSdk = 21
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 dependencies {
