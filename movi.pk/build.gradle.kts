@@ -1,8 +1,9 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("com.lagradost.cloudstream3.gradle")
 }
+
+apply(plugin = "com.lagradost.cloudstream3.gradle")
 
 cloudstream {
     // Plugin ki basic details
