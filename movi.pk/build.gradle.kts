@@ -5,14 +5,14 @@ plugins {
 }
 
 cloudstream {
-    id = "movipk"
-    name = "MoviPK"
-    authors = listOf("Redowan")
+    id.set("movipk")
+    pluginName.set("MoviPK")
+    authors.set(listOf("Redowan"))
     description = "MoviPK movies and series provider for CloudStream"
-    tvTypes = listOf("Movie", "TvSeries")
+    tvTypes.set(listOf("Movie", "TvSeries"))
     version = 1
 }
 
 dependencies {
-    // CloudStream dependencies are automatically handled by the plugin
+    // CloudStream dependencies are automatically managed by the plugin
 }
