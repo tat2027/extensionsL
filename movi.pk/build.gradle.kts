@@ -30,7 +30,6 @@ kotlin {
 }
 
 dependencies {
-    // Using the official cloudstream dependency notation that maps through local/plugin repositories
-    // without triggering JitPack 401 unauthorized checks
-    compileOnly("com.github.cloudstream:cloudstream3:master-SNAPSHOT")
+    // Official correct namespace and stable release version on JitPack
+    implementation("com.github.lagradost:cloudstream3:v3.4.2")
 }
