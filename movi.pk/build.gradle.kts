@@ -30,6 +30,6 @@ kotlin {
 }
 
 dependencies {
-    // Correct CloudStream dependency format for master-SNAPSHOT without 401 errors
-    compileOnly("com.github.recloudstream:cloudstream3:master-SNAPSHOT")
+    // Stable release dependency avoiding JitPack 401 snapshot unauthorized error
+    implementation("com.lagradost:cloudstream3:3.7.0")
 }
