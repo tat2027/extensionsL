@@ -1,4 +1,4 @@
-package com.redowan
+package recloudstream
 
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
