@@ -30,5 +30,6 @@ kotlin {
 }
 
 dependencies {
-    // Left empty intentionally so the CloudStream plugin manages core dependencies automatically
+    // Correct CloudStream dependency format for master-SNAPSHOT without 401 errors
+    compileOnly("com.github.recloudstream:cloudstream3:master-SNAPSHOT")
 }
