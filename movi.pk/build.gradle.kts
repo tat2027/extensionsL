@@ -5,13 +5,18 @@ plugins {
 }
 
 cloudstream {
-    // Official CloudStream master-SNAPSHOT extension properties
-    set("id", "movipk")
-    set("name", "MoviPK")
-    set("authors", listOf("Redowan"))
-    description = "MoviPK movies and series provider for CloudStream"
-    set("tvTypes", listOf("Movie", "TvSeries"))
-    version = 1
+    // Standard CloudStream extension configuration
+    setMainClass("recloudstream.MoviPK")
+}
+
+android {
+    namespace = "recloudstream.movipk"
+    compileSdk = 34
+
+    defaultConfig {
+        minSdk = 21
+        targetSdk = 34
+    }
 }
 
 dependencies {
