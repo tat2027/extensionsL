@@ -5,8 +5,9 @@ plugins {
 }
 
 cloudstream {
-    setID("movipk")
-    setName("MoviPK")
+    // Current CloudStream plugin DSL syntax
+    id = "movipk"
+    name = "MoviPK"
     authors = listOf("Redowan")
     description = "MoviPK movies and series provider for CloudStream"
     tvTypes = listOf("Movie", "TvSeries")
@@ -14,5 +15,5 @@ cloudstream {
 }
 
 dependencies {
-    // CloudStream dependencies are automatically managed by the plugin
+    // CloudStream dependencies are automatically handled by the plugin
 }
