@@ -4,14 +4,14 @@ plugins {
     id("com.lagradost.cloudstream3.gradle")
 }
 
-configure<com.lagradost.cloudstream3.gradle.CloudstreamExtension> {
-    // Gradle properties ko .set() ke sath define karna padega kyunki yeh Property<T> hain
-    this.id = "movipk"
-    this.name = "MoviPK"
-    this.authors = listOf("Redowan")
-    this.description = "MoviPK movies and series provider for CloudStream"
-    this.tvTypes = listOf("Movie", "TvSeries")
-    this.version = 1
+cloudstream {
+    // Correct method calls for CloudstreamExtension DSL
+    setID("movipk")
+    setName("MoviPK")
+    setAuthors(listOf("Redowan"))
+    description = "MoviPK movies and series provider for CloudStream"
+    setTvTypes(listOf("Movie", "TvSeries"))
+    setVersion(1)
 }
 
 dependencies {
