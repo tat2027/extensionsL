@@ -5,13 +5,13 @@ plugins {
 }
 
 cloudstream {
-    // Correct method calls for CloudstreamExtension DSL
-    setID("movipk")
-    setName("MoviPK")
-    setAuthors(listOf("Redowan"))
+    // Current CloudstreamExtension Gradle Property API syntax
+    id = "movipk"
+    name = "MoviPK"
+    authors = listOf("Redowan")
     description = "MoviPK movies and series provider for CloudStream"
-    setTvTypes(listOf("Movie", "TvSeries"))
-    setVersion(1)
+    tvTypes = listOf("Movie", "TvSeries")
+    version = 1
 }
 
 dependencies {
