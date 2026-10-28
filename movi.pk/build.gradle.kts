@@ -5,11 +5,16 @@ plugins {
 }
 
 cloudstream {
-    id = "movipk"
-    pluginName = "MoviPK"
-    author = "Redowan"
+    setID("movipk")
+    setName("MoviPK")
+    setAuthor("Redowan")
     description = "MoviPK movies and series provider for CloudStream"
-    tvTypes = listOf("Movie", "TvSeries")
+    setTvTypes(
+        listOf(
+            "Movie",
+            "TvSeries"
+        )
+    )
     version = 1
 }
 
