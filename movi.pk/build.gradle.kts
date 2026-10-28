@@ -30,6 +30,6 @@ kotlin {
 }
 
 dependencies {
-    // Required CloudStream core library dependency for provider and plugin classes
-    implementation(com.lagradost.cloudstream3.gradle.CloudstreamPlugin.libVersion)
+    // Standard CloudStream dependency reference for master-SNAPSHOT
+    implementation(makeLib("lib"))
 }
