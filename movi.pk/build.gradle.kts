@@ -4,20 +4,16 @@ plugins {
     id("com.lagradost.cloudstream3.gradle")
 }
 
+// Modern CloudStream DSL syntax (yeh getters/setters ki bajaye direct property assignment use karta hai taake koi Unresolved reference error na aaye)
 cloudstream {
-    setID("movipk")
-    setName("MoviPK")
-    setAuthor("Redowan")
+    id = "movipk"
+    name = "MoviPK"
+    author = "Redowan"
     description = "MoviPK movies and series provider for CloudStream"
-    setTvTypes(
-        listOf(
-            "Movie",
-            "TvSeries"
-        )
-    )
+    tvTypes = listOf("Movie", "TvSeries")
     version = 1
 }
 
 dependencies {
-    // CloudStream dependencies are handled by the plugin automatically
+    // CloudStream dependencies are automatically managed by the plugin
 }
