@@ -5,8 +5,11 @@ plugins {
 }
 
 cloudstream {
-    // Standard CloudStream extension configuration
-    setMainClass("recloudstream.MoviPK")
+    // Modern CloudStream properties schema
+    authors = listOf("Redowan")
+    description = "MoviPK movies and series provider for CloudStream"
+    tvTypes = listOf("Movie", "TvSeries")
+    version = 1
 }
 
 android {
@@ -15,7 +18,6 @@ android {
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 34
     }
 }
 
