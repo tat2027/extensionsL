@@ -5,12 +5,12 @@ plugins {
 }
 
 cloudstream {
-    // Current CloudstreamExtension Gradle Property API syntax
-    id = "movipk"
-    name = "MoviPK"
-    authors = listOf("Redowan")
+    // Official CloudStream master-SNAPSHOT extension properties
+    set("id", "movipk")
+    set("name", "MoviPK")
+    set("authors", listOf("Redowan"))
     description = "MoviPK movies and series provider for CloudStream"
-    tvTypes = listOf("Movie", "TvSeries")
+    set("tvTypes", listOf("Movie", "TvSeries"))
     version = 1
 }
 
