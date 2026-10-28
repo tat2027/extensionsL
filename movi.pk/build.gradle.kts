@@ -4,10 +4,9 @@ plugins {
     id("com.lagradost.cloudstream3.gradle")
 }
 
-cloudstream {
-    // Current CloudStream plugin DSL syntax
-    id = "movipk"
-    name = "MoviPK"
+configure<com.lagradost.cloudstream3.gradle.CloudstreamExtension> {
+    setID("movipk")
+    setName("MoviPK")
     authors = listOf("Redowan")
     description = "MoviPK movies and series provider for CloudStream"
     tvTypes = listOf("Movie", "TvSeries")
@@ -15,5 +14,5 @@ cloudstream {
 }
 
 dependencies {
-    // CloudStream dependencies are automatically handled by the plugin
+    // CloudStream dependencies are automatically managed by the plugin
 }
