@@ -30,6 +30,6 @@ kotlin {
 }
 
 dependencies {
-    // Stable release dependency avoiding JitPack 401 snapshot unauthorized error
-    implementation("com.lagradost:cloudstream3:3.7.0")
+    // Public stable release tag on JitPack which does not require unauthorized token auth
+    implementation("com.github.recloudstream:cloudstream3:v3.4.2")
 }
