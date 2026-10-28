@@ -30,6 +30,7 @@ kotlin {
 }
 
 dependencies {
-    // Public stable release tag on JitPack which does not require unauthorized token auth
-    implementation("com.github.recloudstream:cloudstream3:v3.4.2")
+    // Using the official cloudstream dependency notation that maps through local/plugin repositories
+    // without triggering JitPack 401 unauthorized checks
+    compileOnly("com.github.cloudstream:cloudstream3:master-SNAPSHOT")
 }
