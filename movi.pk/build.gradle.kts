@@ -4,12 +4,12 @@ plugins {
     id("com.lagradost.cloudstream3.gradle")
 }
 
-extensions.configure<com.lagradost.cloudstream3.gradle.CloudstreamExtension> {
-    setID("movipk")
-    setName("MoviPK")
-    setAuthor("Redowan")
+cloudstream {
+    id = "movipk"
+    name = "MoviPK"
+    authors = listOf("Redowan")
     description = "MoviPK movies and series provider for CloudStream"
-    setTvTypes(listOf("Movie", "TvSeries"))
+    tvTypes = listOf("Movie", "TvSeries")
     version = 1
 }
 
