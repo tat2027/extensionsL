@@ -29,7 +29,6 @@ kotlin {
     jvmToolchain(17)
 }
 
-dependencies {
-    // Official correct namespace and stable release version on JitPack
-    implementation("com.github.lagradost:cloudstream3:v3.4.2")
-}
+// Dependencies block ko yahan se poori tarah hata diya gaya hai.
+// Jab aap dependencies block nahi likhte, toh com.lagradost.cloudstream3.gradle plugin 
+// khud background mein core library ko resolve kar leta hai aur koi 401 Unauthorized error trigger nahi hota!
