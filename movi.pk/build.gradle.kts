@@ -30,6 +30,5 @@ kotlin {
 }
 
 dependencies {
-    // Standard CloudStream dependency reference for master-SNAPSHOT
-    implementation(makeLib("lib"))
+    // Leave empty: CloudStream plugin automatically manages dependencies
 }
