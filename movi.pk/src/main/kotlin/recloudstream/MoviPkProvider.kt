@@ -11,7 +11,8 @@ import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.addDubStatus
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.mainPageOf
-import com.lagradost.cloudstream3.newAnimeSearchResponse
+import com.lagradost.cloudstream3.newMovieSearchResponse
+import com.lagradost.cloudstream3.newTvSeriesSearchResponse
 import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.newMovieLoadResponse
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -55,24 +56,37 @@ class MoviPKProvider : MainAPI() {
         return newHomePageResponse(request.name, home, true)
     }
 
-    private fun toResult(post: Element): SearchResponse {
-        val title = post.select("a:nth-child(1)").attr("oldtitle")
-        val url = post.select("a:nth-child(1)").attr("href")
+    private fun toResult(post: Element): SearchResponse? {
+        val aTag = post.selectFirst("a:nth-child(1)") ?: return null
+        val title = aTag.attr("oldtitle").ifEmpty { aTag.attr("title") }.ifEmpty { aTag.text() }
+        val url = aTag.attr("href")
+        if (url.isNullOrEmpty()) return null
+
         val check = title.lowercase()
-        val quality = post.select("a:nth-child(1) > span:nth-child(1)").text()
-        return newAnimeSearchResponse(title, url, TvType.Movie) {
-            this.posterUrl = post.selectFirst(".lazy.thumb.mli-thumb")
-                ?.attr("data-original")
-            this.quality = getSearchQuality(quality)
-            addDubStatus(
-                dubExist = when {
-                    "dubbed" in check -> true
-                    "dual audio" in check -> true
-                    "multi audio" in check -> true
-                    else -> false
-                },
-                subExist = false
-            )
+        val quality = aTag.selectFirst("span")?.text()
+
+        // Detect if it's a series or movie based on URL or title keywords
+        val isSeries = check.contains("season") || check.contains("episode") || url.contains("tv-series")
+        val tvType = if (isSeries) TvType.TvSeries else TvType.Movie
+
+        return if (isSeries) {
+            newTvSeriesSearchResponse(title, url, tvType) {
+                this.posterUrl = post.selectFirst(".lazy.thumb.mli-thumb")?.attr("data-original")
+                this.quality = getSearchQuality(quality)
+                addDubStatus(
+                    dubExist = "dubbed" in check || "dual audio" in check || "multi audio" in check,
+                    subExist = false
+                )
+            }
+        } else {
+            newMovieSearchResponse(title, url, tvType) {
+                this.posterUrl = post.selectFirst(".lazy.thumb.mli-thumb")?.attr("data-original")
+                this.quality = getSearchQuality(quality)
+                addDubStatus(
+                    dubExist = "dubbed" in check || "dual audio" in check || "multi audio" in check,
+                    subExist = false
+                )
+            }
         }
     }
 
@@ -90,9 +104,9 @@ class MoviPKProvider : MainAPI() {
                 "user-agent" to "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
             )).document
         val title = doc.select(".mvic-desc > h3:nth-child(1)").text()
-        val image = doc.selectFirst(".hidden.lazyload")
-            ?.attr("data-src")
+        val image = doc.selectFirst(".hidden.lazyload")?.attr("data-src")
         val plot = doc.select("p.f-desc:nth-child(1)").text().replace(title, "")
+        
         var dataUrl = ""
         doc.select("div.btn-group:nth-child(2) a").forEach {
             val link = it.attr("href")
@@ -101,6 +115,7 @@ class MoviPKProvider : MainAPI() {
                 link.replace("https://bembed.net", "https://listeamed.net")
         }
         dataUrl = dataUrl.replace("/v/", "/e/")
+        
         return newMovieLoadResponse(title, url, TvType.Movie, dataUrl) {
             this.posterUrl = image
             this.plot = plot
@@ -113,33 +128,23 @@ class MoviPKProvider : MainAPI() {
         subtitleCallback: (SubtitleFile) -> Unit,
         callback: (ExtractorLink) -> Unit
     ): Boolean {
-        // Updated loadExtractor parameters for modern CloudStream versions
         loadExtractor(data, data, subtitleCallback, callback)
         return true
     }
 
     private fun getSearchQuality(check: String?): SearchQuality? {
-        val lowercaseCheck = check?.lowercase()
-        if (lowercaseCheck != null) {
-            return when {
-                lowercaseCheck.contains("webrip") || lowercaseCheck.contains("web-dl") -> SearchQuality.WebRip
-                lowercaseCheck.contains("bluray") -> SearchQuality.BlueRay
-                lowercaseCheck.contains("hdts") || lowercaseCheck.contains("hdcam") || lowercaseCheck.contains(
-                    "hdtc"
-                ) -> SearchQuality.HdCam
-
-                lowercaseCheck.contains("dvd") -> SearchQuality.DVD
-                lowercaseCheck.contains("cam") -> SearchQuality.Cam
-                lowercaseCheck.contains("camrip") || lowercaseCheck.contains("rip") -> SearchQuality.CamRip
-                lowercaseCheck.contains("hdrip") || lowercaseCheck.contains("hd") || lowercaseCheck.contains(
-                    "hdtv"
-                ) -> SearchQuality.HD
-
-                lowercaseCheck.contains("telesync") -> SearchQuality.Telesync
-                lowercaseCheck.contains("telecine") -> SearchQuality.Telecine
-                else -> null
-            }
+        val lowercaseCheck = check?.lowercase() ?: return null
+        return when {
+            lowercaseCheck.contains("webrip") || lowercaseCheck.contains("web-dl") -> SearchQuality.WebRip
+            lowercaseCheck.contains("bluray") -> SearchQuality.BlueRay
+            lowercaseCheck.contains("hdts") || lowercaseCheck.contains("hdcam") || lowercaseCheck.contains("hdtc") -> SearchQuality.HdCam
+            lowercaseCheck.contains("dvd") -> SearchQuality.DVD
+            lowercaseCheck.contains("cam") -> SearchQuality.Cam
+            lowercaseCheck.contains("camrip") || lowercaseCheck.contains("rip") -> SearchQuality.CamRip
+            lowercaseCheck.contains("hdrip") || lowercaseCheck.contains("hd") || lowercaseCheck.contains("hdtv") -> SearchQuality.HD
+            lowercaseCheck.contains("telesync") -> SearchQuality.Telesync
+            lowercaseCheck.contains("telecine") -> SearchQuality.Telecine
+            else -> null
         }
-        return null
     }
 }
