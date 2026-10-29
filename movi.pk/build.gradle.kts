@@ -30,6 +30,6 @@ kotlin {
 }
 
 dependencies {
-    // Official public release artifact on JitPack using the standard group and version format
-    implementation("com.github.lagradost.cloudstream3:library:v3.4.2")
+    // JitPack 401 error fix karne ke liye master-SNAPSHOT use kiya gaya hai
+    implementation("com.github.lagradost.cloudstream3:library:master-SNAPSHOT")
 }
