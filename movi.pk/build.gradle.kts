@@ -5,15 +5,15 @@ plugins {
 }
 
 cloudstream {
-    // Cloudstream extension ke liye 'id' aur 'name' properties yeh hain:
-    id = "movipk"
-    name = "MoviPK"
-    description = "MoviPK Extension"
+    // Cloudstream extension ke liye yeh properties valid hain:
     authors = listOf("MoviPK")
+    description = "MoviPK Extension"
     language = "en"
     iconUrl = ""
     status = 3
     tvTypes = listOf("Movie")
+    // Note: Extension ka display name automatically project/folder name ya plugin settings se utha liya jata hai, 
+    // is liye yahan extra 'id' ya 'name' assign karne ki zaroorat nahi hai.
 }
 
 dependencies {
