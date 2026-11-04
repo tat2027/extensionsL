@@ -15,7 +15,8 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
-        classpath("com.github.recloudstream:gradle:master-SNAPSHOT")
+        // master-SNAPSHOT ki jagah stable release tag use kiya gaya hai
+        classpath("com.github.recloudstream:gradle:v4.3.0")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0")
     }
 }
@@ -39,7 +40,8 @@ subprojects {
 
     dependencies {
         val implementation by configurations
-        implementation("com.github.recloudstream.cloudstream:library:master-SNAPSHOT")
+        // Yahan bhi master-SNAPSHOT ki jagah stable version set kar diya gaya hai
+        implementation("com.github.recloudstream.cloudstream:library:v4.3.0")
     }
 }
 
