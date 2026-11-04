@@ -4,16 +4,31 @@ plugins {
     id("com.lagradost.cloudstream3.gradle")
 }
 
+android {
+    compileSdk = 34
+
+    defaultConfig {
+        minSdk = 21
+        targetSdk = 34
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
 cloudstream {
-    // Cloudstream extension ke liye yeh properties valid hain:
     authors = listOf("MoviPK")
     description = "MoviPK Extension"
     language = "en"
     iconUrl = ""
     status = 3
     tvTypes = listOf("Movie")
-    // Note: Extension ka display name automatically project/folder name ya plugin settings se utha liya jata hai, 
-    // is liye yahan extra 'id' ya 'name' assign karne ki zaroorat nahi hai.
 }
 
 dependencies {
