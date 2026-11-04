@@ -1,16 +1,16 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("com.lagradost.cloudstream3.gradle") // Yeh plugin lazmi hona chahiye
+    id("com.lagradost.cloudstream3.gradle")
 }
 
 cloudstream {
-    englishName = "MoviPK"
+    name = "MoviPK" // Yahan englishName ki jagah name use karna hai
     description = "MoviPK Extension"
     authors = listOf("MoviPK")
     language = "en"
     iconUrl = ""
-    status = 3 // 3 means working
+    status = 3
     tvTypes = listOf("Movie")
 }
 
