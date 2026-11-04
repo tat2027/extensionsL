@@ -4,13 +4,14 @@ plugins {
 }
 
 cloudstream {
-    name = "MoviPK"
+    // Properties ko set karne ke liye yeh standard format use karein
+    englishName = "MoviPK"
     description = "MoviPK Extension"
     authors = listOf("YourName")
     language = "en"
     iconUrl = ""
     status = 3 // 3 means working
-    tvTypes = listOf("Movie") // Movie, TvSeries, Anime, etc.
+    tvTypes = listOf("Movie")
 }
 
 dependencies {
