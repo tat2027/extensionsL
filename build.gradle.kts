@@ -15,7 +15,8 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:8.7.3")
-        classpath("com.github.recloudstream:gradle:master-SNAPSHOT")
+        // master-SNAPSHOT ki jagah main-SNAPSHOT use kiya gaya hai
+        classpath("com.github.recloudstream:gradle:main-SNAPSHOT")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0")
     }
 }
@@ -39,7 +40,7 @@ subprojects {
 
     dependencies {
         val implementation by configurations
-        implementation("com.github.recloudstream.cloudstream:library:master-SNAPSHOT")
+        implementation("com.github.recloudstream.cloudstream:library:main-SNAPSHOT")
     }
 }
 
