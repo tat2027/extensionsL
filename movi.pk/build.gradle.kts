@@ -5,7 +5,7 @@ plugins {
 
 cloudstream {
     // Properties ko set karne ke liye yeh standard format use karein
-    englishName = "MoviPK"
+    setEnglishName("MoviPK")
     description = "MoviPK Extension"
     authors = listOf("YourName")
     language = "en"
