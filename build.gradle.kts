@@ -20,17 +20,8 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        maven("https://jitpack.io") {
-            credentials {
-                username = System.getenv("JITPACK_TOKEN") ?: ""
-            }
-        }
-    }
-}
+// NOTE: allprojects wala repositories block yahan se khatam kar diya gaya hai 
+// kyunki yeh ab settings.gradle.kts se handle ho raha hai.
 
 subprojects {
     apply(plugin = "com.android.library")
