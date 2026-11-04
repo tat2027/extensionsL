@@ -1,9 +1,28 @@
 pluginManagement {
     repositories {
-        maven { url = java.net.URI("https://jitpack.io") }
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            url = uri("https://jitpack.io")
+            credentials {
+                username = System.getenv("JITPACK_TOKEN") ?: ""
+            }
+        }
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://jitpack.io")
+            credentials {
+                username = System.getenv("JITPACK_TOKEN") ?: ""
+            }
+        }
     }
 }
 
