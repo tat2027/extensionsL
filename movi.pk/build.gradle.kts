@@ -5,7 +5,7 @@ plugins {
 }
 
 cloudstream {
-    englishName = "MoviPK" // Yahan 'name' ki jagah 'englishName' use karna hai
+    name = "MoviPK" // Yahan 'englishName' ki jagah sirf 'name' karna hai
     description = "MoviPK Extension"
     authors = listOf("MoviPK")
     language = "en"
