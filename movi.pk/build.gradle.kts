@@ -5,7 +5,9 @@ plugins {
 }
 
 cloudstream {
-    name("MoviPK")
+    // Cloudstream extension ke liye 'id' aur 'name' properties yeh hain:
+    id = "movipk"
+    name = "MoviPK"
     description = "MoviPK Extension"
     authors = listOf("MoviPK")
     language = "en"
