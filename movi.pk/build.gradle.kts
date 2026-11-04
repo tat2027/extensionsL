@@ -1,35 +1,19 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("com.lagradost.cloudstream3.gradle")
 }
 
 cloudstream {
-    authors = listOf("Redowan")
-    description = "MoviPK movies and series provider for CloudStream"
-    tvTypes = listOf("Movie", "TvSeries")
-    version = 1
-}
-
-android {
-    namespace = "recloudstream.movipk"
-    compileSdk = 34
-
-    defaultConfig {
-        minSdk = 21
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-}
-
-kotlin {
-    jvmToolchain(17)
+    setEnglishName("MoviPK")
+    description = "MoviPK Extension"
+    authors = arrayListOf("YourName")
+    language = "en"
+    iconUrl = ""
+    status = 3 // 3 means working
+    tvTypes = arrayListOf(0) // 0 means Movie/TV
 }
 
 dependencies {
-    // JitPack 401 error fix karne ke liye official pre-release format use kiya gaya hai
-    implementation("com.github.lagradost:cloudstream3:pre-release")
+    // pre-release ki jagah library dependency ko standard rakhein
+    implementation("com.github.recloudstream.cloudstream:library:master-SNAPSHOT")
 }
