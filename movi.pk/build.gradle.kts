@@ -4,16 +4,15 @@ plugins {
 }
 
 cloudstream {
-    setEnglishName("MoviPK")
+    name = "MoviPK"
     description = "MoviPK Extension"
-    authors = arrayListOf("YourName")
+    authors = listOf("YourName")
     language = "en"
     iconUrl = ""
     status = 3 // 3 means working
-    tvTypes = arrayListOf(0) // 0 means Movie/TV
+    tvTypes = listOf("Movie") // Movie, TvSeries, Anime, etc.
 }
 
 dependencies {
-    // pre-release ki jagah library dependency ko standard rakhein
     implementation("com.github.recloudstream.cloudstream:library:master-SNAPSHOT")
 }
